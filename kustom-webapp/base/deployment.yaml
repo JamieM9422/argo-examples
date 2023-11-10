@@ -8,7 +8,9 @@ spec:
     spec:   # Pod spec
       containers:
         - name: mycontainer
-      image: "devopsjourney1/mywebapp:latest"
+      image:
+        name: devopsjourney1/mywebapp
+        tag: latest
       ports:
         - containerPort: 80
       envFrom:
