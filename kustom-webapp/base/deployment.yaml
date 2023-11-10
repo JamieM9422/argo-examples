@@ -5,19 +5,19 @@ metadata:
 spec:
   replicas: 1
   template:
-    spec: # Pod spec
+    spec:   # Pod spec
       containers:
-      - name: mycontainer
-        image: "devopsjourney1/mywebapp:latest"
-        ports:
+        - name: mycontainer
+      image: "devopsjourney1/mywebapp:latest"
+      ports:
         - containerPort: 80
-        envFrom:
+      envFrom:
         - configMapRef:
             name: mykustom-map
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 500milliCPUs (1/2 CPU)
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+      resources:
+        requests:
+          memory: "16Mi"
+          cpu: "50m"    # 500milliCPUs (1/2 CPU)
+        limits:
+          memory: "128Mi"
+          cpu: "100m"
