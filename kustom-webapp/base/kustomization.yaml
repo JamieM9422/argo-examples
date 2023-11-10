@@ -1,15 +1,18 @@
-resources:
-- deployment.yaml
-- service.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
-commonLabels:
-  app: kustomwebapp
+resources:
+  - deployment.yaml
+  - service.yaml
 
 commonAnnotations:
   app: mykustom-annontations
 
-namePrefix:
-  kustom-
+namePrefix: kustom-
 
-nameSuffix:
-  -v1
+nameSuffix: -v1
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: kustomwebapp
