@@ -1,27 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons
-  namespace: argocd
+  name: guestbook
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/JamieM9422/argo-examples.git
-      revision: HEAD
-      directories:
-      - path: kustom-webapp/overlays/{{namespace}}
+  - list:
+      elements:
+      - cluster: engineering-dev
+      - cluster: engineering-prod
+      - cluster: finance-preprod
   template:
     metadata:
-      name: '{{namespace}}-kustomize-webapp'
+      name: '{{cluster}}-guestbook'
     spec:
-      project: "default"
+      project: default
       source:
-        repoURL: https://github.com/JamieM9422/argo-examples.git
+        repoURL: https://github.com/argoproj/argo-cd.git
         targetRevision: HEAD
-        path: kustom-webapp/overlays/{{namespace}}
+        path: applicationset/examples/list-generator/guestbook/{{cluster}}
       destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
-      syncPolicy:
-        syncOptions:
-        - CreateNamespace=true
+        namespace: guestbook
