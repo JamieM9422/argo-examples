@@ -5,6 +5,7 @@ resources:
   - ../../base
 patches:
   - path: replicas.yaml
+          port.yaml
 
 configMapGenerator:
   - envs:
