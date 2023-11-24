@@ -12,6 +12,8 @@ spec:
   template: 
     metadata: 
       name: "kustom-webapp-{{path.basename}}" #this gets the lowest dir's in the path
+      labels:
+        managedBy: argocd-application-set
     spec: 
       destination:
         namespace: "{{path.basename}}"

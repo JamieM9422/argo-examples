@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: mywebapp
 spec:
-  replicas: 1
   template:
     spec:   # Pod spec
       containers:
