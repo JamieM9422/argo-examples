@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/JamieM9422/argo-examples.git
+      revision: HEAD
+      directories:
+      - path: kustom-webapp/overlays/{{namespace}}
+  template:
+    metadata:
+      name: '{{namespace}}-kustomize-webapp'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/JamieM9422/argo-examples.git
+        targetRevision: HEAD
+        path: kustom-webapp/overlays/{{namespace}}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
