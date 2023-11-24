@@ -6,17 +6,18 @@ spec:
   generators:
   - list:
       elements:
-      - cluster: engineering-dev
-      - cluster: engineering-prod
-      - cluster: finance-preprod
+      - namespace: engineering-dev
+      - namespace: engineering-prod
+      - namespace: finance-preprod
   template:
     metadata:
-      name: '{{cluster}}-guestbook'
+      name: '{{namespace}}-guestbook'
     spec:
       project: default
       source:
         repoURL: https://github.com/argoproj/argo-cd.git
         targetRevision: HEAD
-        path: applicationset/examples/list-generator/guestbook/{{cluster}}
+        path: applicationset/examples/list-generator/guestbook/{{namespace}}
       destination:
+        server: https://kubernetes.default.svc
         namespace: guestbook
