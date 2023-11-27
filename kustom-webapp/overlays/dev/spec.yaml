@@ -1,0 +1,17 @@
+# don't think this is working atm - need to look into if it's going to be worthwhile putting all kustomize patching in one single file as it won't get messed with deployment to deployment anyhow
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywebapp
+spec:
+  template:
+    spec:   # Pod spec
+      containers:
+      - name: mycontainer
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "100m"    # 500milliCPUs (1/2 CPU)
+          limits:
+            memory: "128Mi"
+            cpu: "150m"
