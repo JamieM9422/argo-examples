@@ -4,3 +4,20 @@ metadata:
   name: mywebapp
 spec:
   replicas: 1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywebapp
+spec:
+  template:
+    spec:   # Pod spec
+      containers:
+      - name: mycontainer
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "150m"    # 500milliCPUs (1/2 CPU)
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
