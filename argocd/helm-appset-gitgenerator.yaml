@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
- name: kustomize-apps
+ name: helm-apps
 spec:
   generators:
     - git:
         directories: 
-          - path: helm-webapp/values/*
+          - path: helm-environments/*
         repoURL: "https://github.com/JamieM9422/argo-examples.git"
         revision: HEAD #just means the latest commit
   template: 
@@ -20,9 +20,12 @@ spec:
         server: "https://kubernetes.default.svc"
       project: default
       source: 
-        path: "{{path}}"
+        path: "helm-webapp-982"
         repoURL: "https://github.com/JamieM9422/argo-examples.git"
         targetRevision: HEAD
+        helm:
+          valueFiles:
+            - "{{path}}"
       syncPolicy:
         automated:
           prune: true
