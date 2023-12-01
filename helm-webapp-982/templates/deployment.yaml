@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}
+  name: myapp
   labels:
-    app: {{ .Values.appName }}
+    app: myapp
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
+      app: myapp
       tier: frontend
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}
+        app: myapp
         tier: frontend
     spec: # Pod spec
       containers:
