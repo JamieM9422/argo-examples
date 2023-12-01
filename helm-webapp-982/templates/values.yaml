@@ -1,3 +1,5 @@
+appName: myhelmapp
+
 port: 80
 
 image:
