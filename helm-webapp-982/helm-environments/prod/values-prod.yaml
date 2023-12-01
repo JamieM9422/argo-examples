@@ -1,6 +1,6 @@
+configmap:
+  name: myhelmapp-configmap-v1
+  data:
+    CUSTOM_HEADER: 'This is on the PROD environment for Helm!'
 
 replicas: 4
-
-configmap:
-  data:
-    CUSTOM_HEADER: 'This is on the PROD environment!'
