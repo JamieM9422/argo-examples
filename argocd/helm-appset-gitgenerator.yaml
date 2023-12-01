@@ -26,7 +26,7 @@ spec:
         helm:
           releaseName: "webapp"
           valueFiles:
-            - values.yaml
+            - templates/values.yaml
             - "helm-environments/{{path.basename}}/values-{{path.basename}}.yaml"
       syncPolicy:
         automated:
