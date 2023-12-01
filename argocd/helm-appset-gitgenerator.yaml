@@ -6,7 +6,7 @@ spec:
   generators:
     - git:
         directories: 
-          - path: helm-environments/*
+          - path: helm-webapp-982/helm-environments/*
         repoURL: "https://github.com/JamieM9422/argo-examples.git"
         revision: HEAD #just means the latest commit
   template: 
@@ -24,8 +24,10 @@ spec:
         repoURL: "https://github.com/JamieM9422/argo-examples.git"
         targetRevision: HEAD
         helm:
+          releaseName: "webapp"
           valueFiles:
-            - "{{path}}"
+            - values.yaml
+            - "helm-environments/{{path.basename}}/values-{{path.basename}}.yaml"
       syncPolicy:
         automated:
           prune: true
