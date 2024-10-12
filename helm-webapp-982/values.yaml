@@ -1,7 +1,0 @@
-appName: myhelmapp
-
-port: 80
-
-image:
-  name: devopsjourney1/mywebapp
-  tag: latest

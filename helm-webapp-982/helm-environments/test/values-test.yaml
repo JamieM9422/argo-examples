@@ -1,7 +1,0 @@
-configmap:
-  name: myhelmapp-configmap-v1
-  data:
-    CUSTOM_HEADER: 'This is on the TEST environment for Helm!'
-
-replicas: 3
-
